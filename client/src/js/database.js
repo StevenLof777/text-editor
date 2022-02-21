@@ -1,5 +1,5 @@
 import { openDB } from 'idb';
-import { restart } from 'nodemon';
+// import { restart } from 'nodemon';
 
 const initdb = async () =>
   openDB('jate', 1, {
@@ -21,31 +21,31 @@ export const putDb = async (content) => {
   const jateDb = await openDB('jate', '1');
 
   const tx = jateDb.transaction('jate', 'readwrite');
-// whats a object store again?
+
   const store = tx.objectStore('jate');
 
-  const request = store.add({ jate: content})
+  const request = store.put({ jate: content})
 
   const result = await request;
   console.log('Data saved to db', result);
   return result;
 };
 
-export const getDb = async (content) => {
-  console.log('Get');
+// export const getDb = async (content) => {
+//   console.log('Get');
 
-  const jateDb = await openDB('jate', '1');
+//   const jateDb = await openDB('jate', '1');
 
-  const tx = jateDb.transaction('jate', 'readonly');
+//   const tx = jateDb.transaction('jate', 'readonly');
 
-  const store = tx.objectStore('jate');
+//   const store = tx.objectStore('jate');
 
-  const request = store.getAll()
+//   const request = store.getAll()
 
-  const result = await request;
-  console.log('Data saved to db', result);
-  return result;
-};
+//   const result = await request;
+//   console.log('Data saved to db', result);
+//   return result;
+// };
 
 // Get one thing
 export const getDb = async (content) => {
@@ -57,11 +57,11 @@ export const getDb = async (content) => {
 
   const store = tx.objectStore('jate');
 
-  const request = store.get(id)
+  const request = store.get(1)
 
   const result = await request;
   console.log('Data saved to db', result);
-  return result;
+  return result.value;
 };
 
 
